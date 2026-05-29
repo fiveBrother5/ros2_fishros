@@ -1,0 +1,3 @@
+/home/wuge/ros_fish_dev/src/charpt1/CMakeFiles/learn_cake.dir
+/home/wuge/ros_fish_dev/src/charpt1/CMakeFiles/edit_cache.dir
+/home/wuge/ros_fish_dev/src/charpt1/CMakeFiles/rebuild_cache.dir
