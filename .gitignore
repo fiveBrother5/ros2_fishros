@@ -1,0 +1,72 @@
+# ROS / colcon generated workspaces
+**/build/
+**/install/
+**/log/
+**/devel/
+
+# CMake generated files
+**/CMakeFiles/
+**/CMakeCache.txt
+**/Makefile
+**/cmake_install.cmake
+**/CTestConfiguration.ini
+**/CTestCustom.cmake
+**/CTestTestfile.cmake
+**/install_manifest.txt
+**/*Config.cmake
+**/*Config-version.cmake
+
+# ament generated files
+**/ament_cmake_core/
+**/ament_cmake_environment_hooks/
+**/ament_cmake_index/
+**/ament_cmake_package_templates/
+**/ament_cmake_uninstall_target/
+**/colcon_build.rc
+**/colcon_command_prefix*.sh
+**/colcon_command_prefix*.sh.env
+
+# Compiled artifacts
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.bin
+charpt2/chapt2_ws/src/demo_cpp_pkg/src/ros2_cpp_node
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor and local machine files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Local assistant metadata
+.agents/
+.codex/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak

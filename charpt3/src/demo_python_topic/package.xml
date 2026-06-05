@@ -1,11 +1,14 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>ros_python_pkg</name>
+  <name>demo_python_topic</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
-  <maintainer email="wuge@todo.todo">wuge</maintainer>
+  <maintainer email="you@example.com">wuge</maintainer>
   <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>example_interfaces</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>

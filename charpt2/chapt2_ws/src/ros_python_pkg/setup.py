@@ -24,6 +24,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'python_code = ros_python_pkg.python_node:main'
         ],
     },
 )
