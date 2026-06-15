@@ -10,16 +10,17 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     package_share_path = get_package_share_directory('fishbot_description')
-    urdf_path = os.path.join(package_share_path, 'urdf', 'first_robot.urdf')
+    xacro_path = os.path.join(package_share_path, 'urdf', 'first_robot.urdf.xacro')
+    rviz_config_path = os.path.join(package_share_path, 'config', 'first_config.rviz')
 
     action_declare_arg_model_path = DeclareLaunchArgument(
         name='model',
-        default_value=urdf_path,
-        description='Absolute path to the robot URDF file',
+        default_value=xacro_path,
+        description='Absolute path to the robot xacro file',
     )
 
     robot_description = ParameterValue(
-        Command(['cat ', LaunchConfiguration('model')]),
+        Command(['xacro ', LaunchConfiguration('model')]),
         value_type=str,
     )
 
@@ -37,6 +38,7 @@ def generate_launch_description():
     action_rviz_node = Node(
         package='rviz2',
         executable='rviz2',
+        arguments=['-d', rviz_config_path],
     )
 
     return LaunchDescription([

@@ -1,12 +1,17 @@
 <?xml version="1.0"?>
-<robot name="first_robot">
+<robot name="first_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="base_radius" value="0.10"/>
+    <xacro:property name="base_length" value="0.12"/>
+    <xacro:property name="imu_size" value="0.02"/>
+    <xacro:property name="imu_z" value="0.03"/>
+
     <!--机器人身体部分-->
     <link name="base_link">
         <!--部件外观模式-->
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
-                <cylinder radius="0.10" length="0.12"/>
+                <cylinder radius="${base_radius}" length="${base_length}"/>
             </geometry>
             <material name="white">
                 <color rgba="1.0 1.0 1.0 0.5"/>
@@ -19,7 +24,7 @@
         <visual>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
             <geometry>
-                <box size="0.02 0.02 0.02"/>
+                <box size="${imu_size} ${imu_size} ${imu_size}"/>
             </geometry>
             <material name="black">
                 <color rgba="0.0 0.0 0.0 0.5"/>
@@ -30,7 +35,7 @@
     <joint name="imu_joint" type="fixed">
         <parent link="base_link"/>
         <child link="imu_link"/>
-        <origin xyz="0.0 0.0 0.03" rpy="0.0 0.0 0.0"/>
+        <origin xyz="0.0 0.0 ${imu_z}" rpy="0.0 0.0 0.0"/>
         
     </joint>
 </robot>
