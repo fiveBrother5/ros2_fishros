@@ -44,6 +44,6 @@ def generate_launch_description():
     return LaunchDescription([
         action_declare_arg_model_path,
         action_robot_state_publisher,
-        action_joint_state_publisher,
+        # action_joint_state_publisher,
         action_rviz_node,
     ])
