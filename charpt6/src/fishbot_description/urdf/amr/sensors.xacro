@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="lidar_sensor">
+        <link name="lidar_link">
+            <xacro:cylinder_z_inertial
+                mass="0.18"
+                radius="0.048"
+                length="0.040"
+                ox="0.0"
+                oy="0.0"
+                oz="0.0"/>
+            <visual>
+                <origin xyz="0.0 0.0 -0.008" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.048" length="0.018"/>
+                </geometry>
+                <material name="top_black"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.048" length="0.040"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.0 0.0 0.008" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.040" length="0.022"/>
+                </geometry>
+                <material name="sensor_blue"/>
+            </visual>
+        </link>
+
+        <joint name="lidar_joint" type="fixed">
+            <parent link="cabinet_link"/>
+            <child link="lidar_link"/>
+            <origin xyz="0.0 0.0 ${lidar_z}" rpy="0.0 0.0 0.0"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="camera_sensor">
+        <link name="camera_link">
+            <xacro:box_inertial
+                mass="0.15"
+                x="0.030"
+                y="0.070"
+                z="0.045"
+                ox="0.0"
+                oy="0.0"
+                oz="0.0"/>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.030 0.070 0.045"/>
+                </geometry>
+                <material name="top_black"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.030 0.070 0.045"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.022 0.0 0.0" rpy="0.0 ${pi / 2.0} 0.0"/>
+                <geometry>
+                    <cylinder radius="0.014" length="0.018"/>
+                </geometry>
+                <material name="lens_black"/>
+            </visual>
+            <visual>
+                <origin xyz="0.032 0.0 0.0" rpy="0.0 ${pi / 2.0} 0.0"/>
+                <geometry>
+                    <cylinder radius="0.008" length="0.004"/>
+                </geometry>
+                <material name="sensor_blue"/>
+            </visual>
+        </link>
+
+        <joint name="camera_joint" type="fixed">
+            <parent link="cabinet_link"/>
+            <child link="camera_link"/>
+            <origin xyz="${camera_x} 0.0 ${camera_z}" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <link name="camera_optical_frame"/>
+
+        <joint name="camera_optical_joint" type="fixed">
+            <parent link="camera_link"/>
+            <child link="camera_optical_frame"/>
+            <origin xyz="0.036 0.0 0.0" rpy="${-pi / 2.0} 0.0 ${-pi / 2.0}"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="imu_sensor">
+        <link name="imu_link">
+            <xacro:box_inertial
+                mass="0.05"
+                x="0.045"
+                y="0.032"
+                z="0.010"
+                ox="0.0"
+                oy="0.0"
+                oz="0.0"/>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.045 0.032 0.006"/>
+                </geometry>
+                <material name="imu_green"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.045 0.032 0.010"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.0 0.0 0.005" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.018 0.014 0.004"/>
+                </geometry>
+                <material name="top_black"/>
+            </visual>
+        </link>
+
+        <joint name="imu_joint" type="fixed">
+            <parent link="cabinet_link"/>
+            <child link="imu_link"/>
+            <origin xyz="-0.110 0.055 ${imu_z}" rpy="0.0 0.0 0.0"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="sensor_suite">
+        <xacro:lidar_sensor/>
+        <xacro:camera_sensor/>
+        <xacro:imu_sensor/>
+    </xacro:macro>
+</robot>

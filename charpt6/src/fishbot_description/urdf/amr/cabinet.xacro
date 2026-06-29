@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="medicine_cabinet">
+        <link name="cabinet_link">
+            <xacro:box_inertial
+                mass="9.00"
+                x="${cabinet_length}"
+                y="${cabinet_width}"
+                z="${cabinet_height}"
+                ox="0.0"
+                oy="0.0"
+                oz="0.0"/>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${cabinet_length} ${cabinet_width} ${cabinet_height}"/>
+                </geometry>
+                <material name="cabinet_white"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${cabinet_length} ${cabinet_width} ${cabinet_height}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.006} 0.0 -0.070" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.012 ${cabinet_width - 0.045} 0.440"/>
+                </geometry>
+                <material name="door_panel"/>
+            </visual>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.013} 0.0 -0.070" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.010 0.006 0.430"/>
+                </geometry>
+                <material name="panel_black"/>
+            </visual>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.014} 0.0 0.040" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.010 ${cabinet_width - 0.070} 0.006"/>
+                </geometry>
+                <material name="panel_black"/>
+            </visual>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.014} 0.0 -0.180" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.010 ${cabinet_width - 0.070} 0.006"/>
+                </geometry>
+                <material name="panel_black"/>
+            </visual>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.015} -0.072 -0.030" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.014 0.014 0.150"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.016} 0.0 0.250" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.010 0.150 0.075"/>
+                </geometry>
+                <material name="panel_black"/>
+            </visual>
+            <visual>
+                <origin xyz="${cabinet_length / 2.0 + 0.018} 0.0 0.255" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.006 0.120 0.045"/>
+                </geometry>
+                <material name="sensor_blue"/>
+            </visual>
+        </link>
+
+        <joint name="cabinet_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="cabinet_link"/>
+            <origin xyz="0.0 0.0 ${cabinet_z}" rpy="0.0 0.0 0.0"/>
+        </joint>
+    </xacro:macro>
+</robot>

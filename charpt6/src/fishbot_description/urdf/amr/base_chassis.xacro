@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="base_chassis">
+        <link name="base_footprint"/>
+
+        <joint name="base_footprint_joint" type="fixed">
+            <parent link="base_footprint"/>
+            <child link="base_link"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <link name="base_link">
+            <xacro:box_inertial
+                mass="5.00"
+                x="${chassis_length}"
+                y="${chassis_width}"
+                z="${chassis_height}"
+                ox="0.0"
+                oy="0.0"
+                oz="${chassis_z}"/>
+            <visual>
+                <origin xyz="0.0 0.0 ${chassis_z}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+                </geometry>
+                <material name="body_gray"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 ${chassis_z}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${chassis_length} ${chassis_width} ${chassis_height}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.0 0.0 ${base_top_plate_z}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.43 0.28 0.020"/>
+                </geometry>
+                <material name="top_black"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 ${base_top_plate_z}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.43 0.28 0.020"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="${chassis_length / 2.0 + 0.008} 0.0 ${chassis_z - 0.006}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.018 0.29 0.045"/>
+                </geometry>
+                <material name="bumper_red"/>
+            </visual>
+            <collision>
+                <origin xyz="${chassis_length / 2.0 + 0.008} 0.0 ${chassis_z - 0.006}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.018 0.29 0.045"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+</robot>

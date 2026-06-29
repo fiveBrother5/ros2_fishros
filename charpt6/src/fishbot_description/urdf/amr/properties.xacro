@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="chassis_length" value="0.50"/>
+    <xacro:property name="chassis_width" value="0.34"/>
+    <xacro:property name="chassis_height" value="0.11"/>
+    <xacro:property name="chassis_z" value="0.075"/>
+
+    <xacro:property name="wheel_radius" value="0.060"/>
+    <xacro:property name="wheel_width" value="0.040"/>
+    <xacro:property name="wheel_y" value="${chassis_width / 2.0 + wheel_width / 2.0}"/>
+    <xacro:property name="caster_radius" value="0.025"/>
+    <xacro:property name="caster_wheel_width" value="0.018"/>
+    <xacro:property name="caster_swivel_drop" value="0.020"/>
+    <xacro:property name="caster_swivel_z" value="${caster_radius + caster_swivel_drop}"/>
+    <xacro:property name="caster_front_x" value="0.185"/>
+    <xacro:property name="caster_rear_x" value="-0.185"/>
+
+    <xacro:property name="base_top_plate_z" value="${chassis_z + chassis_height / 2.0 + 0.014}"/>
+    <xacro:property name="cabinet_length" value="0.38"/>
+    <xacro:property name="cabinet_width" value="0.29"/>
+    <xacro:property name="cabinet_height" value="0.6"/>
+    <xacro:property name="cabinet_z" value="${chassis_z + chassis_height / 2.0 + 0.020 + cabinet_height / 2.0}"/>
+    <xacro:property name="cabinet_top_z" value="${cabinet_z + cabinet_height / 2.0}"/>
+
+    <xacro:property name="lidar_z" value="${cabinet_height / 2.0 + 0.055}"/>
+    <xacro:property name="camera_x" value="${cabinet_length / 2.0 + 0.025}"/>
+    <xacro:property name="camera_z" value="0.190"/>
+    <xacro:property name="imu_z" value="${cabinet_height / 2.0 + 0.018}"/>
+
+    <material name="body_gray">
+        <color rgba="0.28 0.30 0.32 0.88"/>
+    </material>
+    <material name="cabinet_white">
+        <color rgba="0.88 0.91 0.92 0.94"/>
+    </material>
+    <material name="door_panel">
+        <color rgba="0.72 0.76 0.78 0.90"/>
+    </material>
+    <material name="panel_black">
+        <color rgba="0.02 0.025 0.030 0.98"/>
+    </material>
+    <material name="top_black">
+        <color rgba="0.04 0.05 0.06 0.96"/>
+    </material>
+    <material name="wheel_black">
+        <color rgba="0.01 0.01 0.01 1.0"/>
+    </material>
+    <material name="hub_silver">
+        <color rgba="0.75 0.76 0.72 0.96"/>
+    </material>
+    <material name="sensor_blue">
+        <color rgba="0.05 0.22 0.90 0.92"/>
+    </material>
+    <material name="lens_black">
+        <color rgba="0.00 0.00 0.00 1.0"/>
+    </material>
+    <material name="imu_green">
+        <color rgba="0.05 0.48 0.18 0.90"/>
+    </material>
+    <material name="bumper_red">
+        <color rgba="0.75 0.05 0.04 0.95"/>
+    </material>
+    <material name="caster_dark">
+        <color rgba="0.05 0.05 0.05 0.98"/>
+    </material>
+</robot>

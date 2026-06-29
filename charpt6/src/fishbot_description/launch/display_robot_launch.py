@@ -10,13 +10,13 @@ from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     package_share_path = get_package_share_directory('fishbot_description')
-    xacro_path = os.path.join(package_share_path, 'urdf', 'first_robot.urdf.xacro')
+    xacro_path = os.path.join(package_share_path, 'urdf', 'first_robot_with_sensors.urdf.xacro')
     rviz_config_path = os.path.join(package_share_path, 'config', 'first_config.rviz')
 
     action_declare_arg_model_path = DeclareLaunchArgument(
         name='model',
         default_value=xacro_path,
-        description='Absolute path to the robot xacro file',
+        description='Absolute path to the robot xacro file with sensors',
     )
 
     robot_description = ParameterValue(
