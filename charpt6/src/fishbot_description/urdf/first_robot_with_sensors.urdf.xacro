@@ -8,6 +8,8 @@
     <xacro:include filename="amr/sensors.xacro"/>
     <xacro:include filename="amr/gazebo_properties.xacro"/>
     <xacro:include filename="amr/plugins/gazebo_control_plugin.xacro"/>
+    <xacro:include filename="amr/plugins/gazebo_sensor_plugin.xacro"/>
+     <xacro:include filename="amr/fishbot.ros2_control.xacro"/>
 
     <xacro:base_chassis/>
     <xacro:medicine_cabinet/>
@@ -15,6 +17,8 @@
     <xacro:caster_wheels/>
     <xacro:sensor_suite/>
     <xacro:gazebo_properties/>
-    <xacro:gazebo_control_plugin/>
+    <!-- <xacro:gazebo_control_plugin/> -->
+    <xacro:gazebo_sensor_plugin/>
+    <xacro:fishbot_ros2_control/>
 
 </robot>
