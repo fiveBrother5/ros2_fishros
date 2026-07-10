@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<library path="motion_plugins">
+  <class
+    name="motion_control_system/StraightMotion"
+    type="motion_control_system::StraightMotion"
+    base_class_type="motion_control_system::MotionControlInterface">
+    <description>Publishes positive linear velocity for straight motion.</description>
+  </class>
+  <class
+    name="motion_control_system/SpinMotion"
+    type="motion_control_system::SpinMotion"
+    base_class_type="motion_control_system::MotionControlInterface">
+    <description>Publishes angular velocity for spinning in place.</description>
+  </class>
+  <class
+    name="motion_control_system/CircleMotion"
+    type="motion_control_system::CircleMotion"
+    base_class_type="motion_control_system::MotionControlInterface">
+    <description>Publishes linear and angular velocity for circular motion.</description>
+  </class>
+</library>

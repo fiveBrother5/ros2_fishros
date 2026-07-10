@@ -1,0 +1,36 @@
+frame_id: map
+
+initial_pose:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  yaw: 0.0
+
+waypoints:
+  - name: 巡检点1
+    x: 1.0
+    y: 0.0
+    z: 0.0
+    yaw: 0.0
+    voice_text: 已到达巡检点一
+
+  - name: 巡检点2
+    x: 1.0
+    y: 1.0
+    z: 0.0
+    yaw: 1.57
+    voice_text: 已到达巡检点二
+
+  - name: 巡检点3
+    x: 0.0
+    y: 1.0
+    z: 0.0
+    yaw: 3.14
+    voice_text: 已到达巡检点三
+
+  - name: 返回起点
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    yaw: 0.0
+    voice_text: 已返回起点

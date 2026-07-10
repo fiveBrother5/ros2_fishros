@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="drive_wheel" params="prefix y">
+        <link name="${prefix}_wheel_link">
+            <xacro:cylinder_y_inertial
+                mass="0.35"
+                radius="${wheel_radius}"
+                length="${wheel_width}"
+                ox="0.0"
+                oy="0.0"
+                oz="0.0"/>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+                </geometry>
+                <material name="wheel_black"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+                </geometry>
+            </collision>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.020" length="${wheel_width + 0.004}"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_wheel_joint" type="continuous">
+            <parent link="base_link"/>
+            <child link="${prefix}_wheel_link"/>
+            <origin xyz="0.0 ${y} ${wheel_radius}" rpy="0.0 0.0 0.0"/>
+            <axis xyz="0.0 1.0 0.0"/>
+            <dynamics damping="0.02" friction="0.01"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="caster_wheel" params="prefix x">
+        <link name="${prefix}_caster_swivel_link">
+            <xacro:box_inertial
+                mass="0.16"
+                x="0.050"
+                y="${caster_wheel_width + 0.024}"
+                z="${caster_swivel_drop + 0.012}"
+                ox="0.0"
+                oy="0.0"
+                oz="${-caster_swivel_drop / 2.0}"/>
+            <visual>
+                <origin xyz="0.0 0.0 0.006" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.010" length="0.025"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+            <visual>
+                <origin xyz="0.0 0.0 -0.006" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.050 ${caster_wheel_width + 0.024} 0.010"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+            <visual>
+                <origin xyz="0.0 ${caster_wheel_width / 2.0 + 0.006} ${-caster_swivel_drop / 2.0}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.012 0.006 ${caster_swivel_drop}"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+            <visual>
+                <origin xyz="0.0 ${-(caster_wheel_width / 2.0 + 0.006)} ${-caster_swivel_drop / 2.0}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.012 0.006 ${caster_swivel_drop}"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+        </link>
+
+        <joint name="${prefix}_caster_swivel_joint" type="continuous">
+            <parent link="base_link"/>
+            <child link="${prefix}_caster_swivel_link"/>
+            <origin xyz="${x} 0.0 ${caster_swivel_z}" rpy="0.0 0.0 0.0"/>
+            <axis xyz="0.0 0.0 1.0"/>
+            <dynamics damping="0.001" friction="0.0"/>
+        </joint>
+
+        <link name="${prefix}_caster_link">
+            <xacro:cylinder_y_inertial
+                mass="0.10"
+                radius="${caster_radius}"
+                length="${caster_wheel_width}"
+                ox="0.0"
+                oy="0.0"
+                oz="0.0"/>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${caster_radius}" length="${caster_wheel_width}"/>
+                </geometry>
+                <material name="caster_dark"/>
+            </visual>
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.009" length="${caster_wheel_width + 0.006}"/>
+                </geometry>
+                <material name="hub_silver"/>
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${caster_radius}" length="${caster_wheel_width}"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${prefix}_caster_wheel_joint" type="continuous">
+            <parent link="${prefix}_caster_swivel_link"/>
+            <child link="${prefix}_caster_link"/>
+            <origin xyz="${-caster_trail} 0.0 ${-caster_swivel_drop}" rpy="0.0 0.0 0.0"/>
+            <axis xyz="0.0 1.0 0.0"/>
+            <dynamics damping="0.001" friction="0.0"/>
+        </joint>
+    </xacro:macro>
+
+    <xacro:macro name="drive_wheels">
+        <xacro:drive_wheel prefix="left" y="${wheel_y}"/>
+        <xacro:drive_wheel prefix="right" y="-${wheel_y}"/>
+    </xacro:macro>
+
+    <xacro:macro name="caster_wheels">
+        <xacro:caster_wheel prefix="front" x="${caster_front_x}"/>
+        <xacro:caster_wheel prefix="rear" x="${caster_rear_x}"/>
+    </xacro:macro>
+</robot>

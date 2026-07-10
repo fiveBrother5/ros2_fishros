@@ -1,0 +1,6 @@
+motion_controller:
+  ros__parameters:
+    plugin_name: motion_control_system/StraightMotion
+    linear_speed: 0.2
+    angular_speed: 0.5
+    publish_rate: 10.0
